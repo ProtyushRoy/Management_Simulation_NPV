@@ -1,3 +1,8 @@
+.screen{
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
 h1{
     text-align: center;
 }
@@ -25,7 +30,9 @@ body{
 }
 
 button[class = next]{
-    position:fixed;bottom: 50px;right: 10px;
+    position: center;
+    margin-top: 1cm;
+    
 }
 
 li{
@@ -51,3 +58,55 @@ table{
 tr, th, td{
     border-style: solid;
 }
+
+
+div[class = NPV]{
+    font-size: 24px;
+}
+div[class = screen]{
+    text-align: center;
+    align-items: center;
+}
+
+
+/* FLOWCHART CSS STARTS HERE ................SCREEN 3*/
+
+.level1, .level2, .level3, .level4, .level5, .level6, .level7{
+    display: none;
+   }
+
+.level0:hover .level1{
+  display:block;
+}
+
+.level1:hover .level2{
+  display:block;
+}
+
+.level2:hover .level3{
+  display:block;
+}
+
+.level3:hover .level4{
+  display:block;
+}
+
+.level4:hover .level5{
+  display:block;
+}
+
+.level5:hover .level6{
+  display:block;
+}
+
+.level6:hover .level7{
+  display:block;
+}
+
+.level7:hover .level0{
+    display:block;
+}
+
+/* FLOWCHART CSS ENDS HERE ................SCREEN 3*/
+
+
