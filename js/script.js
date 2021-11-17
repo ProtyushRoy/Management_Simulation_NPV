@@ -111,6 +111,7 @@ function totalPV(){
 
 }
 
+/*
 function CalcNPV(){
     var cost = document.getElementById("cop").value;
 
@@ -141,9 +142,12 @@ function CalcNPV(){
         alert("As the Net Present Value (NPV) is 0, the project is not expected to give any siginificant gain or loss . Hence you can use non monetary factors such as intangible benefits to take the decision");
     }
 }
+*/
 
-
+var npv
 function CalcNPV_2(){
+    
+
     var cop = document.getElementById("cop_2").value;
     var n = document.getElementById("n_2").value;
     var dis_rate = document.getElementById("i_2").value;
@@ -153,11 +157,37 @@ function CalcNPV_2(){
     for(let i=1;i<=Number(n);i++){
         sum += (document.getElementById("textbox"+i).value)/Math.pow(Number(dis_rate)+1,i);
     }
-    var npv = Number(sum) - Number(cop);
-    document.getElementById("display").innerHTML ="<p>Net Present Value = " + npv.toFixed(2); + "</p>"
+    npv = Number(sum) - Number(cop);
+    npv = npv.toFixed(2);
+    document.getElementById("display").innerHTML ="<p>Net Present Value = " + npv; + "</p>"
+    document.getElementById("modal_NPV").innerHTML = npv;
+
+    if(npv>0){
+        document.getElementById("modal_decision").innerHTML = "<p style='color:rgb(14, 225, 21); text-align: left;'>As the Net present value (NPV) of the project is positive, you can expect profit. Hence you can consider taking up the project.</p>"
+    }
+    else if(npv<0){
+        document.getElementById("modal_decision").innerHTML = "<p style='color:#cc0000; text-align: left;'>As the Net Present Value (NPV) of the project is negative, you can expect net loss. Hence you should not consider taking up the project.</p>"
+    }
+    else if(npv===0.00){
+        document.getElementById("modal_decision"),innerHTML = "<p style='color:white; text-align: left;'>As the Net Present Value (NPV) is 0, the project is not expected to give any siginificant gain or loss . Hence you can use non monetary factors such as intangible benefits to take the decision</p>"
+    }
+
+    document.getElementById("modal").style.display = "block";
 
 }
 
+
+/*
+function close(){
+
+    document.getElementById("modal").style.display = "none";
+}
+*/
+
+
+function newFunction() {
+    return "none";
+}
 
 function NforInput(){
     var n =  document.getElementById("n_2").value;
@@ -165,21 +195,24 @@ function NforInput(){
 
     for(let i=1;i<=Number(n);i++){
         var element = document.createElement("input");
-        
+        var break_line = document.createElement("br")
         element.setAttribute("id", "textbox"+i);
         element.setAttribute("placeholder", "Enter cash inflow of year"+i);
 
         
         
         input.appendChild(element);
+        input.appendChild(break_line);
+        
         
     }
-    var element_2 = document.createElement("button");
-    element_2.innerHTML = "Enter";
+    var btn = document.createElement("button");
+    btn.className = "btn btn-info"
+    btn.innerHTML = "Calculate";
     
     
-    input.appendChild(element_2);
-    element_2.onclick=CalcNPV_2;
+    input.appendChild(btn);
+    btn.onclick=CalcNPV_2;
 }
 
 function LevelChange(){
@@ -208,5 +241,4 @@ function Check(){
     else{
         f2p_text[0].style.display="none";
     }
-    
 }
